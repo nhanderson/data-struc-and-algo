@@ -247,4 +247,47 @@ def remove_punc(str):
 # print(remove_punc(str3))
 
 # c-1.26
-def check_formula(a,b,c)
+def check_formula(a,b,c):
+    operator_set1 = ("+","-","*","/","//","%")
+    operator_set2 = ("==","<",">","<=",">=")
+    for op1 in operator_set1:
+        for op2 in operator_set2:
+            expression1 = str(a) + op1 + str(b) + op2 + str(c)
+            expression2 = str(a) + op2 + str(b) + op1 + str(c)
+            if eval(expression1):
+                print(expression1)
+                return True
+            elif eval(expression2):
+                print(expression2)
+                return True
+    return False
+
+# print(check_formula(1,2,3))
+# print(check_formula(1,100,1))
+
+# c-1.27
+def factors(n):
+    k =1
+    factor_store = []
+    while k*k < n:
+        if n%k == 0:
+            factor_store.append(n//k)
+            yield k
+        k += 1
+    if k*k == n:
+        yield k
+    for k in reverse(factor_store):
+        yield k
+
+# gen = factors(100)
+# for i in range(0,9):
+#     print(next(gen))
+
+# c-1.28
+def norm(v,p=2):
+    sum = 0
+    for i in v:
+        sum += i ** p
+    return sum ** (1/p)
+
+print(norm([4,3]))
